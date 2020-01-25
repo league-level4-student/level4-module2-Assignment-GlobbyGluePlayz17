@@ -23,7 +23,7 @@ class StringMethodsTest {
 	@Test 
 	void testLineLeader() {
 		assertEquals("John A", StringMethods.lineLeader("John C", "John B", "John A"));
-		assertEquals("John A", StringMethods.lineLeader(" John C   ", "     John B ", "           John A  "));
+		assertEquals("John Ah", StringMethods.lineLeader(" John Cf   ", "     John Be ", "           John Ah  "));
 		assertEquals("Charley F", StringMethods.lineLeader("  Allison Z", " Brad H ", " Charley F "));
 	}
 	
