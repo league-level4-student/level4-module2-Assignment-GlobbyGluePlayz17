@@ -128,7 +128,7 @@ public class StringMethods {
 			fal = larger12;
 		}
 		
-		System.out.println(fal);
+		//System.out.println(fal);
 		return fal;
 	}
 	
@@ -152,15 +152,20 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		int numberoftimesrepeated = 0;
+		int numberoftimesfound = 0;
 		
 		for (int i = 0; i < s.length(); i++) {
-			if (condition) {
-				
+			if (s.contains(substring)) {
+				int index = s.indexOf(substring);
+				numberoftimesfound+=1;
+				s = s.substring(0, index) + s.subSequence(index+substring.length(), s.length());
+			} else {
+				break;
 			}
 		}
 		
-		return numberoftimesrepeated;
+		
+		return numberoftimesfound;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
@@ -177,8 +182,34 @@ public class StringMethods {
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
+		int numberofwordswithsuffix = 0;
 		
-		return 0;
+		substring = substring + " ";
+		
+		for (int i = 0; i < s.length(); i++) {
+			if (s.contains(substring)) {
+				int index = s.indexOf(substring);
+				numberofwordswithsuffix+=1;
+				s = s.substring(0, index) + s.subSequence(index+substring.length(), s.length());
+			} else {
+				break;
+			}
+		}
+		
+		substring = substring + ".";
+		
+		for (int i = 0; i < s.length(); i++) {
+			if (s.contains(substring)) {
+				int index = s.indexOf(substring);
+				numberofwordswithsuffix+=1;
+				s = s.substring(0, index) + s.subSequence(index+substring.length(), s.length());
+			} else {
+				break;
+			}
+		}
+		
+		
+		return numberofwordswithsuffix;
 	}
 	
 
@@ -186,7 +217,14 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int firstindex = 0;
+		int lastindex = 0;
+		
+		firstindex = s.indexOf(substring) + substring.length();
+		lastindex = s.lastIndexOf(substring);
+		
+
+		return lastindex-firstindex;
 	}
 
 
@@ -194,10 +232,46 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		s = s.trim();
-		s = s.replace('.', ' ');
-		s.re
+		//boolean isPalindrome = true;
+		String sss = "";
+		
+		for (int i = 0; i < s.length(); i++) {
+			if (Character.isLetter(s.charAt(i)) == true) {
+				sss = sss + Character.toLowerCase(s.charAt(i));
+			}
+		}
+		
+		System.out.println("asdf" + sss + "dsaf");
+		
+		for (int i = 0; i < sss.length(); i++) {
+			if (sss.charAt(i) != sss.charAt(sss.length()-1-i)) {
+				return false;
+			} 
+		}
+		
 		return true;
+		
+//		int substringlength = (int) sss.length()/2;
+//		String notreversedss = sss.substring(0, substringlength-1);
+//		
+//		
+//		String reversedss = "";
+//		
+//		for (int i = notreversedss.length(); i >= 0; i--) {
+//			reversedss = reversedss + notreversedss.charAt(i);
+//		}
+//		System.out.println(notreversedss);
+//		System.out.println(reversedss);
+//		
+//		
+//		if (s.lastIndexOf(reversedss) == substringlength+1 || s.lastIndexOf(reversedss) == substringlength+2) {
+//			isPalindrome = true;
+//		}
+//		
+//		//System.out.println(substringlength + " end of first");
+//		//System.out.println(s.lastIndexOf(reversedss) + " beginning of last");
+		
+		
 	}
 	
 }
